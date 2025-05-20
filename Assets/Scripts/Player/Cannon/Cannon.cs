@@ -10,7 +10,7 @@ public class Cannon : MonoBehaviour
     [SerializeField] private CannonBall _cannonBall;
     [SerializeField] private Transform _firePoint;
     [SerializeField] private float _fireRate;
-    [SerializeField] private float gravity = -18f;
+    private float gravity = -9.81f;
 
     [SerializeField] private float height = 25f;
     [SerializeField] private float minHeight = 10f;

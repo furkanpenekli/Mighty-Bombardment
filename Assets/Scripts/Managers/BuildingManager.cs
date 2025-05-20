@@ -17,7 +17,10 @@ public class BuildingManager : MonoBehaviour
     public float minHealth = 30f;
     public float maxHealth = 100f;
 
-    private Dictionary<Transform, bool> spawnPointStatus = new Dictionary<Transform, bool>();
+    [Header("SPAWN COOLDOWN")]
+    [SerializeField] private float spawnPointCooldown = 3f; // Cooldown time per spawn point.
+
+    private Dictionary<Transform, float> spawnPointCooldowns = new Dictionary<Transform, float>();
     private List<Building> activeBuildings = new List<Building>();
     private float nextSpawnTime;
 
@@ -40,8 +43,34 @@ public class BuildingManager : MonoBehaviour
     {
         foreach (Transform point in spawnPoints)
         {
-            spawnPointStatus[point] = false;
+            spawnPointCooldowns[point] = 0f; // Initially ready to spawn.
         }
+    }
+
+    private bool HasAvailableSpawnPoint()
+    {
+        float currentTime = Time.time;
+        foreach (var kvp in spawnPointCooldowns)
+        {
+            if (kvp.Value <= currentTime)
+                return true;
+        }
+        return false;
+    }
+
+    private Transform GetRandomAvailableSpawnPoint()
+    {
+        float currentTime = Time.time;
+        List<Transform> availablePoints = new List<Transform>();
+        
+        foreach (var kvp in spawnPointCooldowns)
+        {
+            if (kvp.Value <= currentTime)
+                availablePoints.Add(kvp.Key);
+        }
+
+        return availablePoints.Count > 0 ? 
+               availablePoints[Random.Range(0, availablePoints.Count)] : null;
     }
 
     private void SpawnBuilding()
@@ -62,35 +91,15 @@ public class BuildingManager : MonoBehaviour
             building.assignedSpawnPoint = spawnPoint;
             SetupBuilding(building);
             activeBuildings.Add(building);
-            spawnPointStatus[spawnPoint] = true;
+            spawnPointCooldowns[spawnPoint] = float.MaxValue; // Mark as occupied.
         }
-    }
-
-    private Transform GetRandomAvailableSpawnPoint()
-    {
-        List<Transform> availablePoints = new List<Transform>();
-        
-        foreach (var point in spawnPointStatus)
-        {
-            if (!point.Value)
-                availablePoints.Add(point.Key);
-        }
-
-        return availablePoints.Count > 0 ? 
-               availablePoints[Random.Range(0, availablePoints.Count)] : null;
-    }
-
-    private bool HasAvailableSpawnPoint()
-    {
-        return spawnPointStatus.ContainsValue(false);
     }
 
     private void SetupBuilding(Building building)
     {
-        float health = Random.Range(minHealth, maxHealth);
-        building.Initialize(health);
         StartCoroutine(RiseBuildingAnimation(building.transform));
     }
+
 
     private IEnumerator RiseBuildingAnimation(Transform building)
     {
@@ -117,7 +126,10 @@ public class BuildingManager : MonoBehaviour
         if (activeBuildings.Contains(building))
         {
             if (building.assignedSpawnPoint != null)
-                spawnPointStatus[building.assignedSpawnPoint] = false;
+            {
+                // Start cooldown before this spawn point can be used again.
+                spawnPointCooldowns[building.assignedSpawnPoint] = Time.time + spawnPointCooldown;
+            }
             
             activeBuildings.Remove(building);
         }

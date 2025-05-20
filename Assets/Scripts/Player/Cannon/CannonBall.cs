@@ -66,7 +66,6 @@ public class CannonBall : MonoBehaviour
    private Vector3 _destroyVFXScale;
    private void Destroy()
    {
-      Debug.Log("destroyed ball");
       VFXManager.Instance.PlayVFX("Explosion", transform.position, transform.rotation, _destroyVFXScale);
       Destroy(gameObject);
    }
@@ -75,32 +74,12 @@ public class CannonBall : MonoBehaviour
    private GameObject _decalProjectorPrefab;
    void OnCollisionEnter(Collision collision)
    {
-      Debug.Log("OnCollisionEnter called");
-      
-      //ContactPoint contact = collision.contacts[0];
-      //Vector3 decalPosition = contact.point;
-      //Quaternion decalRotation = Quaternion.LookRotation(contact.normal);
-      //
-      //// "DecalProjector" nesnesinin konumunu ve rotasyonunu güncelle
-      //var decal = Instantiate(_decalProjectorPrefab);
-      //decal.transform.position = decalPosition;
-      //decal.transform.rotation = decalRotation;
-      
       Damageable _damageable = collision.gameObject.GetComponentInParent<Damageable>(true);
       if (_damageable != null)
       {
-         Debug.Log("Damaged: " + _damageable.gameObject.name + " " + _damageAmount);
+         //Debug.Log("Damaged: " + _damageable.gameObject.name + " " + _damageAmount);
          _damageable.GiveDamage(_damageAmount);
       }
       CheckOnBuilding();
-   }
-   private void OnTriggerEnter(Collider other)
-   {
-      //Damageable _damageable = other.GetComponentInParent<Damageable>(true);
-      //if (_damageable != null)
-      //{
-      //   Debug.Log("Damaged: " + _damageable.gameObject.name + " " + _damageAmount);
-      //   _damageable.GiveDamage(_damageAmount);
-      //}
    }
 }

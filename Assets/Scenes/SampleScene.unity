@@ -19935,8 +19935,8 @@ MonoBehaviour:
   _rotateAmount: 2
   _crosshairPositionAmount: 1.5
   _fireVFXScale: {x: 1, y: 1, z: 1}
-  _minWeaponAngle: 5
-  _maxWeaponAngle: 60
+  _minWeaponAngle: 40
+  _maxWeaponAngle: 70
   debugPath: 1
   pathResolution: 30
 --- !u!114 &2089073979

@@ -11,17 +11,20 @@ public class Building : Damageable
 
     [Header("Score")]
     [SerializeField]
-    private int scoreValue = 10; // Score to be added when destroyed
+    private int scoreValue = 10; // Score to be added when destroyed.
 
-    public void Initialize(float maxHealth)
+    /// <summary>
+    /// Sets the building's health (damage points).
+    /// </summary>
+    public void SetHealth(float health)
     {
-        this._maxDamagePoint = maxHealth;
-        this.damagePoint = maxHealth;
+        _maxDamagePoint = health;
+        damagePoint = health;
     }
 
     protected override void Destroy()
     {
-        // Play destruction VFX
+        // Play destruction VFX.
         if (VFXManager.Instance != null && !string.IsNullOrEmpty(destroyVFXName))
         {
             VFXManager.Instance.PlayVFX(
@@ -37,8 +40,14 @@ public class Building : Damageable
         {
             ScoreManager.Instance.AddScore(scoreValue);
         }
+    
+        // Notify BuildingManager that this building is destroyed, so spawn point can be freed.
+        if (BuildingManager.Instance != null)
+        {
+            BuildingManager.Instance.RemoveBuilding(this);
+        }
 
-        // Destroy the object
         base.Destroy();
     }
+
 }
