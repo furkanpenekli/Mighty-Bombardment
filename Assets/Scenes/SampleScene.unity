@@ -2431,7 +2431,6 @@ MonoBehaviour:
     type: 3}
   _firePoint: {fileID: 1774005402}
   _fireRate: 1.03
-  gravity: -18
   height: 5
   minHeight: 5
   maxHeight: 30
@@ -6881,7 +6880,6 @@ MonoBehaviour:
     type: 3}
   _firePoint: {fileID: 1836749619}
   _fireRate: 1.03
-  gravity: -18
   height: 25
   minHeight: 10
   maxHeight: 50
@@ -18352,7 +18350,6 @@ MonoBehaviour:
     type: 3}
   _firePoint: {fileID: 331549146}
   _fireRate: 4
-  gravity: -18
   height: 5
   minHeight: 1
   maxHeight: 5
@@ -18935,6 +18932,7 @@ MonoBehaviour:
   riseDuration: 1.5
   minHealth: 30
   maxHealth: 100
+  spawnPointCooldown: 3
 --- !u!1 &2003655255
 GameObject:
   m_ObjectHideFlags: 0
@@ -19925,8 +19923,7 @@ MonoBehaviour:
     type: 3}
   _firePoint: {fileID: 1001205191}
   _fireRate: 1
-  gravity: -18
-  height: 25
+  height: 10
   minHeight: 10
   maxHeight: 30
   heightStep: 10
@@ -19935,8 +19932,8 @@ MonoBehaviour:
   _rotateAmount: 2
   _crosshairPositionAmount: 1.5
   _fireVFXScale: {x: 1, y: 1, z: 1}
-  _minWeaponAngle: 40
-  _maxWeaponAngle: 70
+  _minWeaponAngle: 60
+  _maxWeaponAngle: 75
   debugPath: 1
   pathResolution: 30
 --- !u!114 &2089073979
