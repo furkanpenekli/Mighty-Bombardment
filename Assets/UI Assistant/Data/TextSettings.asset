@@ -1,0 +1,148 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &-7368102537117861099
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a7b52e2415312d44f9bb42ff2fc66e82, type: 3}
+  m_Name: TextStyle1
+  m_EditorClassIdentifier: 
+  Name: Label
+  LocalizedName: {fileID: 0}
+  AnimationSettings: {fileID: 11400000, guid: 0d1bdb99885d09d45a7501806f8e7367, type: 2}
+  ColorSettings: {fileID: 11400000, guid: 0ab7bcd6d7cbc1e4eb43d40dea0a6cfe, type: 2}
+  OptionSettings: {fileID: 11400000, guid: 2dcd8cbd47f2fff4e96388c5fc7e6155, type: 2}
+  ScaleSettings: {fileID: 11400000, guid: 8997d46e24cbe0e4083ab22c98c40507, type: 2}
+  TextSettings: {fileID: 11400000}
+  Styles:
+  - Language: {fileID: 3966114819974110793}
+    FontAsset: {fileID: 11400000, guid: 1e4d1383998844f47a62f0999c223b08, type: 2}
+    Size: 24
+    MinSize: 20
+    MaxSize: 24
+  - Language: {fileID: 7400124307957635467}
+    FontAsset: {fileID: 0}
+    Size: 24
+    MinSize: 20
+    MaxSize: 24
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 67dcd06bbc1067049b573a167468ac10, type: 3}
+  m_Name: TextSettings
+  m_EditorClassIdentifier: 
+  TextStyles:
+  - {fileID: -7368102537117861099}
+  - {fileID: 3704980933949119012}
+  Languages:
+  - {fileID: 3966114819974110793}
+  - {fileID: 7400124307957635467}
+  LocalizationSets:
+  - {fileID: 4495363071478204743}
+  _ActiveLanguage: {fileID: 3966114819974110793}
+  _ActiveLanguageIndex: 0
+--- !u!114 &3704980933949119012
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a7b52e2415312d44f9bb42ff2fc66e82, type: 3}
+  m_Name: TextStyle2
+  m_EditorClassIdentifier: 
+  Name: Text
+  LocalizedName: {fileID: 0}
+  AnimationSettings: {fileID: 11400000, guid: 0d1bdb99885d09d45a7501806f8e7367, type: 2}
+  ColorSettings: {fileID: 11400000, guid: 0ab7bcd6d7cbc1e4eb43d40dea0a6cfe, type: 2}
+  OptionSettings: {fileID: 11400000, guid: 2dcd8cbd47f2fff4e96388c5fc7e6155, type: 2}
+  ScaleSettings: {fileID: 11400000, guid: 8997d46e24cbe0e4083ab22c98c40507, type: 2}
+  TextSettings: {fileID: 11400000}
+  Styles:
+  - Language: {fileID: 3966114819974110793}
+    FontAsset: {fileID: 11400000, guid: a72e24a6ac6ed4c4cb331646c024679b, type: 2}
+    Size: 24
+    MinSize: 20
+    MaxSize: 24
+  - Language: {fileID: 7400124307957635467}
+    FontAsset: {fileID: 0}
+    Size: 22
+    MinSize: 20
+    MaxSize: 24
+--- !u!114 &3966114819974110793
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cfd6cd34dbb610b44ac7ff31f1d7e500, type: 3}
+  m_Name: Language1
+  m_EditorClassIdentifier: 
+  Name: English
+  LocalizedName: {fileID: 0}
+  AnimationSettings: {fileID: 11400000, guid: 0d1bdb99885d09d45a7501806f8e7367, type: 2}
+  ColorSettings: {fileID: 11400000, guid: 0ab7bcd6d7cbc1e4eb43d40dea0a6cfe, type: 2}
+  OptionSettings: {fileID: 11400000, guid: 2dcd8cbd47f2fff4e96388c5fc7e6155, type: 2}
+  ScaleSettings: {fileID: 11400000, guid: 8997d46e24cbe0e4083ab22c98c40507, type: 2}
+  TextSettings: {fileID: 11400000}
+  SimpleLocalizedName: Play
+--- !u!114 &4495363071478204743
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 325a2c4dc229a1f40a322c0930c181bf, type: 3}
+  m_Name: LocalizationSet1
+  m_EditorClassIdentifier: 
+  Name: PlayGame
+  LocalizedName: {fileID: 0}
+  AnimationSettings: {fileID: 11400000, guid: 0d1bdb99885d09d45a7501806f8e7367, type: 2}
+  ColorSettings: {fileID: 11400000, guid: 0ab7bcd6d7cbc1e4eb43d40dea0a6cfe, type: 2}
+  OptionSettings: {fileID: 11400000, guid: 2dcd8cbd47f2fff4e96388c5fc7e6155, type: 2}
+  ScaleSettings: {fileID: 11400000, guid: 8997d46e24cbe0e4083ab22c98c40507, type: 2}
+  TextSettings: {fileID: 11400000}
+  Localizations:
+  - Language: {fileID: 3966114819974110793}
+    Text: Play
+  - Language: {fileID: 7400124307957635467}
+    Text: Oyna
+--- !u!114 &7400124307957635467
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cfd6cd34dbb610b44ac7ff31f1d7e500, type: 3}
+  m_Name: Language2
+  m_EditorClassIdentifier: 
+  Name: "T\xFCrk\xE7e"
+  LocalizedName: {fileID: 0}
+  AnimationSettings: {fileID: 11400000, guid: 0d1bdb99885d09d45a7501806f8e7367, type: 2}
+  ColorSettings: {fileID: 11400000, guid: 0ab7bcd6d7cbc1e4eb43d40dea0a6cfe, type: 2}
+  OptionSettings: {fileID: 11400000, guid: 2dcd8cbd47f2fff4e96388c5fc7e6155, type: 2}
+  ScaleSettings: {fileID: 11400000, guid: 8997d46e24cbe0e4083ab22c98c40507, type: 2}
+  TextSettings: {fileID: 11400000}
+  SimpleLocalizedName: Oyna

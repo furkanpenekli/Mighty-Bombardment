@@ -1,0 +1,25 @@
+fileFormatVersion: 2
+guid: cfd6cd34dbb610b44ac7ff31f1d7e500
+AssetOrigin:
+  serializedVersion: 1
+  productId: 275638
+  packageName: UI Assistant
+  packageVersion: 2.3.3
+  assetPath: Assets/UI Assistant/Essentials/Scripts/ScriptableObjects/Language.cs
+  uploadId: 751932
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - LocalizedName: {fileID: -1089674792367625497, guid: a73c01a01f7352f47bbff334024fde27,
+      type: 2}
+  - AnimationSettings: {instanceID: 0}
+  - ColorSettings: {instanceID: 0}
+  - OptionSettings: {instanceID: 0}
+  - ScaleSettings: {instanceID: 0}
+  - TextSettings: {instanceID: 0}
+  executionOrder: 0
+  icon: {fileID: 2800000, guid: b944f37b6560c654fa1e5ac4fb6d2b5e, type: 3}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

@@ -1,0 +1,16 @@
+fileFormatVersion: 2
+guid: 2d0ab0a2df332ae458b23c0e0021e516
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - _stoneTowerTexture: {fileID: 2800000, guid: d0d7af1c572095144be9c06171c23881,
+      type: 3}
+  - _highTowerTexture: {fileID: 2800000, guid: 689f2c22e9719124bb06e4256908d6d4, type: 3}
+  - _deleteBuildingTexture: {fileID: 2800000, guid: b8ef8ff4a2996354ab8c20dacbd444ce,
+      type: 3}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
