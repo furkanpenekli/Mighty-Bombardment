@@ -1,8 +1,12 @@
-using System;
 using UnityEngine;
 
+[RequireComponent(typeof(LineRenderer))]
+[RequireComponent(typeof(CannonAnimation))]
 public class Cannon : MonoBehaviour
 {
+    private LineRenderer _lineRenderer;
+    private CannonAnimation _cannonAnimation;
+    
     [SerializeField] private CannonBall _cannonBall;
     [SerializeField] private Transform _firePoint;
     [SerializeField] private float _fireRate;
@@ -24,29 +28,43 @@ public class Cannon : MonoBehaviour
     
     private float _timer;
     private bool _fire;
-    private CannonAnimation _cannonAnimation;
-    
     
     [SerializeField] private bool debugPath;
     [SerializeField] private int pathResolution = 30;
 
+    /// <summary>
+    /// Initialize component references and set initial cannon rotation to the minimum angle.
+    /// </summary>
     private void Start()
     {
         _timer = 0f;
         _fire = false;
         _cannonAnimation = GetComponent<CannonAnimation>();
+        _lineRenderer = GetComponent<LineRenderer>();
+        
+        // Set the weapon angle to minimum weapon angle variable.
+        Vector3 currentEuler = _cannonWeapon.transform.localEulerAngles;
+        currentEuler.y = _minWeaponAngle;
+        _cannonWeapon.transform.localEulerAngles = currentEuler;
     }
 
+    /// <summary>
+    /// Handles firing timing, debug path drawing, and clears path when debug is off.
+    /// </summary>
     private void Update()
     {
         if (Time.time >= _timer)
             _fire = true;
-
+    
         if (debugPath)
             DrawPath();
+        else if (_lineRenderer != null)
+            _lineRenderer.positionCount = 0; // Clear the trajectory line when debug off.
     }
 
-
+    /// <summary>
+    /// Fires the cannonball if the fire timer allows it, starts recoil animation and visual effects.
+    /// </summary>
     public void Fire()
     {
         if (!_fire) return;
@@ -65,6 +83,11 @@ public class Cannon : MonoBehaviour
         _fire = false;
     }
 
+    /// <summary>
+    /// Calculates and sets the initial velocity of the cannonball to hit the target based on projectile physics.
+    /// </summary>
+    /// <param name="rb">Rigidbody of the cannonball to launch</param>
+    /// <param name="targetPos">Target position to hit</param>
     private void Launch(Rigidbody rb, Vector3 targetPos)
     {
         Vector3 startPos = _firePoint.position;
@@ -84,15 +107,21 @@ public class Cannon : MonoBehaviour
         rb.linearVelocity = finalVelocity;
     }
 
+    /// <summary>
+    /// Moves the crosshair by the given direction vector.
+    /// </summary>
+    /// <param name="direction">Direction vector to move the crosshair</param>
     private void RepositionCrosshair(Vector3 direction)
     {
         _crosshair.Translate(direction);
     }
 
+    /// <summary>
+    /// Rotates the cannon weapon upwards within allowed angle limits and adjusts crosshair and firing height accordingly.
+    /// </summary>
     public void WeaponRotateUp()
     {
         float rotationY = _cannonWeapon.transform.localEulerAngles.y;
-        Debug.Log("Angle: " + rotationY + "weapon rotating up.");
         if (rotationY > 180f) rotationY -= 360f;
 
         if (rotationY < _maxWeaponAngle)
@@ -103,10 +132,12 @@ public class Cannon : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Rotates the cannon weapon downwards within allowed angle limits and adjusts crosshair and firing height accordingly.
+    /// </summary>
     public void WeaponRotateDown()
     {
         float rotationY = _cannonWeapon.transform.localEulerAngles.y;
-        Debug.Log("Angle: " + rotationY + "weapon rotating down.");
         if (rotationY > 180f) rotationY -= 360f;
 
         if (rotationY > _minWeaponAngle)
@@ -117,35 +148,37 @@ public class Cannon : MonoBehaviour
         }
     }
     
+    /// <summary>
+    /// Draws the projectile's predicted trajectory path using LineRenderer based on current firing parameters.
+    /// </summary>
     private void DrawPath()
     {
+        if (_lineRenderer == null) return;
+    
         Vector3 startPos = _firePoint.position;
         Vector3 targetPos = _crosshair.position;
-
+    
         float displacementY = targetPos.y - startPos.y;
         Vector3 displacementXZ = new Vector3(targetPos.x - startPos.x, 0, targetPos.z - startPos.z);
-
+    
         float time = Mathf.Sqrt(-2 * height / gravity) +
                      Mathf.Sqrt(2 * (displacementY - height) / gravity);
-
+    
         Vector3 velocityY = Vector3.up * Mathf.Sqrt(-2 * gravity * height);
         Vector3 velocityXZ = displacementXZ / time;
-
+    
         Vector3 initialVelocity = velocityXZ + velocityY * -Mathf.Sign(gravity);
-
-        Vector3 previousDrawPoint = startPos;
-
-        for (int i = 1; i <= pathResolution; i++)
+    
+        int resolution = pathResolution;
+        _lineRenderer.positionCount = resolution + 1;
+    
+        for (int i = 0; i <= resolution; i++)
         {
-            float simulationTime = i / (float)pathResolution * time;
-
+            float simulationTime = i / (float)resolution * time;
             Vector3 displacement = initialVelocity * simulationTime +
                                    Vector3.up * gravity * simulationTime * simulationTime / 2f;
-
             Vector3 drawPoint = startPos + displacement;
-            Debug.DrawLine(previousDrawPoint, drawPoint, Color.yellow);
-            previousDrawPoint = drawPoint;
+            _lineRenderer.SetPosition(i, drawPoint);
         }
     }
-
 }
