@@ -63,4 +63,18 @@ public class Damageable : MonoBehaviour
     {
         Destroy(gameObject);   
     }
+
+        public void ResetHealth()
+    {
+        SetHealth(_maxDamagePoint);
+    }
+
+        /// <summary>
+    /// Sets the health (damage points).
+    /// </summary>
+    public void SetHealth(float health)
+    {
+        damagePoint = health;
+        _bar.SetValue(damagePoint);
+    }
 }
