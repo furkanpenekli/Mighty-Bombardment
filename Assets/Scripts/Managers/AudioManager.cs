@@ -42,6 +42,11 @@ public class AudioManager : MonoBehaviour
         SetSFXVolume(sfxVolume);
     }
 
+    private void Start()
+    {
+        PlayMusic(MUSIC_GAMEPLAY);
+    }
+
     public void PlayMusic(int index, bool loop = true)
     {
         if (musicClips == null || index < 0 || index >= musicClips.Length)
@@ -67,12 +72,13 @@ public class AudioManager : MonoBehaviour
         if (sfxClips == null || index < 0 || index >= sfxClips.Length)
             return;
 
-        if (sfxSource != null)
+        if(sfxSource.clip != sfxClips[index])
         {
-            sfxSource.PlayOneShot(sfxClips[index]);
-            Debug.Log("Playing SFX: " + sfxClips[index].name);
+            sfxSource.clip = sfxClips[index];
         }
         
+        sfxSource.PlayOneShot(sfxClips[index]);
+        Debug.Log("Playing SFX: " + sfxClips[index].name);
     }
 
     public void SetMusicVolume(float volume)
