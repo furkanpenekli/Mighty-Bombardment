@@ -67,6 +67,7 @@ public class CannonBall : MonoBehaviour
    private void Destroy()
    {
       VFXManager.Instance.PlayVFX("Explosion", transform.position, transform.rotation, _destroyVFXScale);
+      AudioManager.Instance.PlaySFX(AudioManager.SFX_EXPLOSION);
       Destroy(gameObject);
    }
    

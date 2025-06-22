@@ -6,14 +6,14 @@ public class AudioManager : MonoBehaviour
 
     [Header("Audio Clip Names")]
     // Define SFX clip name constants for "shoot", "explosion", and "hit"
-    public const int SFX_SHOOT = 1;
-    public const int SFX_EXPLOSION = 2;
-    public const int SFX_HIT = 3;
+    public const int SFX_SHOOT = 0;
+    public const int SFX_EXPLOSION = 1;
+    public const int SFX_HIT = 2;
 
     // Define music clip name constants for "menu", "gameplay", and "boss"
-    public const int MUSIC_MENU = 1;
-    public const int MUSIC_GAMEPLAY = 2;
-    public const int MUSIC_BOSS = 3;
+    public const int MUSIC_MENU = 0;
+    public const int MUSIC_GAMEPLAY = 1;
+    public const int MUSIC_BOSS = 2;
 
     [Header("Audio Sources")]
     [SerializeField] private AudioSource musicSource;
@@ -52,6 +52,7 @@ public class AudioManager : MonoBehaviour
             musicSource.clip = musicClips[index];
             musicSource.loop = loop;
             musicSource.Play();
+            Debug.Log("Playing Music: " + musicClips[index].name);
         }
     }
 
@@ -67,7 +68,11 @@ public class AudioManager : MonoBehaviour
             return;
 
         if (sfxSource != null)
+        {
             sfxSource.PlayOneShot(sfxClips[index]);
+            Debug.Log("Playing SFX: " + sfxClips[index].name);
+        }
+        
     }
 
     public void SetMusicVolume(float volume)

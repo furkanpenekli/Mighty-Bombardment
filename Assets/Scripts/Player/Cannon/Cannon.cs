@@ -73,6 +73,7 @@ public class Cannon : MonoBehaviour
             _cannonAnimation.StartRecoil();
 
         VFXManager.Instance.PlayVFX("FireImpact1", _firePoint.position, _firePoint.rotation, _fireVFXScale);
+        AudioManager.Instance.PlaySFX(AudioManager.SFX_SHOOT);
 
         CannonBall cannonBall = Instantiate(_cannonBall, _firePoint.position, _firePoint.rotation);
         Rigidbody rb = cannonBall.GetComponent<Rigidbody>();

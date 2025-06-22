@@ -63,6 +63,7 @@ public class Building : Damageable
 
     public void DestroyAnimation()
     {
+        AudioManager.Instance.PlaySFX(AudioManager.SFX_HIT);
         StartCoroutine(DestroyAnimationCoroutine());
         base.Destroy();
     }
