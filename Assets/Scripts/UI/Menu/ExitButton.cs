@@ -10,4 +10,9 @@ public class ExitButton : MonoBehaviour
         Application.Quit();
 #endif
     }
+
+    public void ReturnToMainMenu()
+    {
+        UnityEngine.SceneManagement.SceneManager.LoadScene("MainMenu");
+    }
 }
